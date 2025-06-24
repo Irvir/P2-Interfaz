@@ -3,6 +3,9 @@ package com.example.hellofx;
 public class Menu {
     String nombreUsuario;
     String nombreJugador;
+    void menu() {
+        System.out.println("Bienvenido al Gato de Gatos!");
+    }
 }
 /*
 import Jugadores.Jugador;
