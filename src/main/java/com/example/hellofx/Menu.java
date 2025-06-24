@@ -1,18 +1,10 @@
 package com.example.hellofx;
 
-public class Menu {
-    String nombreUsuario;
-    String nombreJugador;
-    void menu() {
-        System.out.println("Bienvenido al Gato de Gatos!");
-    }
-}
-/*
-import Jugadores.Jugador;
-import Jugadores.JugadorFactory;
-import Serializable.Serializacion;
-import Tablero.GrupoTableros;
-import Tablero.TableroIndividual;
+import com.example.hellofx.Jugadores.Jugador;
+import com.example.hellofx.Jugadores.JugadorFactory;
+import com.example.hellofx.Serializable.Serializacion;
+import com.example.hellofx.Tablero.GrupoTableros;
+import com.example.hellofx.Tablero.TableroIndividual;
 
 import java.util.Scanner;
 
@@ -112,5 +104,3 @@ public class Menu {
     }
 
 }
-
- */

@@ -28,6 +28,11 @@ public class HelloController {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
     @FXML
+    void Menu(){
+        Menu menu = new Menu();
+        menu.menu();
+    }
+    @FXML
     private void nameUser() {
         String userName = inputField.getText();
         if (userName == null || userName.isEmpty()) {
