@@ -1,6 +1,7 @@
 package com.example.hellofx.Jugadores;
 import com.example.hellofx.Observer.Observador;
 import com.example.hellofx.Serializable.Serializacion;
+import java.io.Serializable;
 import com.example.hellofx.Tablero.GrupoTableros;
 
 public class JugadorHumano implements Jugador{
@@ -99,4 +100,8 @@ public class JugadorHumano implements Jugador{
      this.simbolo = simbolo       ;
     }
 
+    @Override
+    public String getNombre() {
+        return nombreJugador;
+    }
 }

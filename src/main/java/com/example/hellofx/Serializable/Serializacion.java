@@ -10,12 +10,16 @@ public class Serializacion implements Serializable {
     private final String archivo = "jugadores.txt";
 
     // Cargar jugadores desde el archivo
-    private void cargarJugadores() {
+    public void cargarJugadores() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivo))) {
             jugadores = (ArrayList<Jugador>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
             jugadores = new ArrayList<>(); // aseguramos que no quede en null
         }
+    }
+    public ArrayList<Jugador> getAllJugadores() {
+        cargarJugadores();
+        return new ArrayList<>(jugadores);
     }
 
     // Guardar jugadores al archivo

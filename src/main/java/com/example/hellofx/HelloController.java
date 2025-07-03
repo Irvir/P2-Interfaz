@@ -1,27 +1,35 @@
 package com.example.hellofx;
 
+import com.example.hellofx.Jugadores.Jugador;
+import com.example.hellofx.Jugadores.JugadorFactory;
+import com.example.hellofx.Serializable.Serializacion;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.IOException;
+import java.io.Serializable;
 
 public class HelloController {
+    String nombreUsuario;
+    Jugador player1;
     @FXML
     private Label welcomeText;
     @FXML
     private Label FirstOption;
     @FXML
-    private Label SecondOption;
-    @FXML
     private TextField inputField;
-    @FXML
-    private TextField inputField2;
     @FXML
     public void initialize() {
         FirstOption.setVisible(false);
-        inputField2.setVisible(false);
+        inputField.setOnAction(event -> nameUser());
 
-        inputField.setVisible(true);
-        SecondOption.setVisible(false);
     }
     @FXML
     protected void onHelloButtonClick() {
@@ -29,57 +37,63 @@ public class HelloController {
     }
     @FXML
     void Menu(){
-        Menu menu = new Menu();
-        menu.menu();
+
+    }
+    private void showScreen1() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/hellofx/Screen1.fxml"));
+        Parent root = loader.load();
+
+        Screen1 controller = loader.getController();
+        controller.setUserName(nombreUsuario);
+        controller.setPlayer1(player1);
+        controller.setUserName(inputField.getText());
+
+        Stage stage = (Stage) welcomeText.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setMaximized(true);
+        stage.show();
     }
     @FXML
     private void nameUser() {
-        String userName = inputField.getText();
-        if (userName == null || userName.isEmpty()) {
+        Serializacion serializacion = new Serializacion();
+
+        nombreUsuario = inputField.getText();
+        if (nombreUsuario == null || nombreUsuario.isEmpty()) {
             welcomeText.setText("Por favor, ingrese un nombre de usuario.");
             FirstOption.setVisible(false);
             return;
         }
-        welcomeText.setText("¡Bienvenido, " + userName + "!");
+        if (serializacion.encontrarJugador(nombreUsuario)){
+            welcomeText.setText("¡Bienvenido, " + nombreUsuario + "!");
+            player1 = serializacion.recuperarJugador(nombreUsuario);
+            FirstOption.setText(player1.toString());
+
+        }
+        else {
+            welcomeText.setText("¡Jugador creado!\n¡Bienvenido, " + nombreUsuario + "!");
+            player1 = JugadorFactory.crearJugador(nombreUsuario,"Humano")            ;
+            serializacion.agregarJugador(player1);
+        }
         FirstOption.setVisible(true);
-        inputField2.setVisible(true);
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        pause.setOnFinished(event -> {
+            try {
 
-        String optionText = inputField2.getText();
-        int option = -1;
-        try {
-            if (!optionText.isEmpty()) {
-                option = Integer.parseInt(optionText);
+                showScreen1();
+            } catch (IOException e) {
+                e.printStackTrace();
+                welcomeText.setText("Error al cargar la pantalla.");
             }
-        } catch (NumberFormatException e) {
-            welcomeText.setText("Por favor, ingrese una opción válida (número).");
-            SecondOption.setVisible(false);
-            return;
-        }
+        });
+        pause.play();
+    }
 
-        switch (option) {
-            case 1:
-                // Acción para opción 1
-                break;
-            case 2:
-                // Acción para opción 2
-                break;
-            case 3:
-                // Acción para opción 3
-                break;
-            default:
-                if (option != -1) {
-                    welcomeText.setText("Opción no válida, por favor ingrese una opción válida.");
-                }
-                break;
-        }
-        if (option != -1 && option >= 1 && option <= 3) {
-            SecondOption.setVisible(true);
-        }
-    }
-    protected void onOption1() throws Exception {
-        System.out.println("Opción 1 seleccionada");
-    }
 
 
 
 }
+
+
+
+
+

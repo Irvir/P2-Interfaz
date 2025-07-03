@@ -18,8 +18,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Rectangle2D screenBounds = javafx.stage.Screen.getPrimary().getVisualBounds();
         Scene scene = new Scene(fxmlLoader.load(), screenBounds.getWidth(), screenBounds.getHeight());
-        Menu menu = new Menu();
-        menu.menu();
+
 
         stage.setTitle("Gato de Gatos");
         stage.setScene(scene);

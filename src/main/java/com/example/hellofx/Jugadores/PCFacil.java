@@ -96,4 +96,9 @@ public class PCFacil implements Jugador{
     public void setSimbolo(char simbolo) {
         this.simbolo = simbolo;
     }
+
+    @Override
+    public String getNombre() {
+        return nombreJugador;
+    }
 }

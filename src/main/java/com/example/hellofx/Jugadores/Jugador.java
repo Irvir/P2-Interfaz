@@ -3,6 +3,7 @@ package com.example.hellofx.Jugadores;
 import java.io.Serializable;
 import com.example.hellofx.Tablero.*;
 
+
 public interface Jugador extends Serializable {
     String getNombreJugador();
     void setNombreJugador(String nombreJugador);
@@ -23,5 +24,6 @@ public interface Jugador extends Serializable {
     void setSimbolo(char simbolo);
 
     int hacerJugada(int plano, int posicion, GrupoTableros tableros, char simbolo);
+    String getNombre();
 
 }

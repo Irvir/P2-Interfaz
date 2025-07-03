@@ -7,10 +7,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/24.0.1" fx:controller="com.example.hellofx.HelloController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellofx.HelloController"
+      prefWidth="-1" prefHeight="-1">
 
-        <Label fx:id="welcomeText" style="-fx-font-size: 50" text="Bienvenido al Gato de Gatos!" />
+        <Label fx:id="welcomeText" style="-fx-font-size: 50" text="Bienvenido al Gato de Gatos!">
+      <font>
+         <Font name="Berlin Sans FB Demi Bold" size="12.0" />
+      </font></Label>
    <StackPane prefHeight="304.0" prefWidth="711.0">
       <children>
          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#db3069" height="315.0" stroke="BLACK" strokeType="INSIDE" width="735.0" />
@@ -33,18 +38,14 @@
             <padding>
                <Insets top="100.0" />
             </padding>
+            <StackPane.margin>
+               <Insets top="-50.0" />
+            </StackPane.margin>
          </Label>
       </children>
    </StackPane>
 
-                <TextField fx:id="inputField2" prefWidth="500" promptText="Ingrese su Opción" style="-fx-font-size: 16px; -fx-pref-width: 250px;">
-        <VBox.margin>
-            <Insets bottom="20.0" left="200.0" right="200.0" top="20.0" />
-        </VBox.margin>
-    </TextField>
-    <Label fx:id="SecondOption" style="-fx-font-size: 20" text="1. Humano vs Humano.&#10;2. Humano vs PC Fácil.&#10;3. Humano vs PC Difícil.&#10;Seleccione una opción:" />
-
-    <Button onAction="#nameUser" text="Aceptar" />
+    <Button onAction="#nameUser" prefHeight="30.0" prefWidth="100.0" text="Aceptar" />
 
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
